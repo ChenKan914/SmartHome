@@ -1,0 +1,20 @@
+/*2010.1.8,SecurityDlg*/
+
+/*QLabel*/
+QLabel{
+    color:#ffffff;
+}
+
+/*m_btnBack*/
+QPushButton#m_btnBack{
+        border-image: url(:/images/NeighborDlg/BackNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:hover{
+        border-image: url(:/images/NeighborDlg/BackCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:checked{
+        border-image: url(:/images/NeighborDlg/BackCursor.png);
+	border: 0px;
+}

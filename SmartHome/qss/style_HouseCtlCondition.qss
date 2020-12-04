@@ -1,0 +1,4 @@
+/*2019.8.17,HouseCtlCondition*/
+QWidget#m_wgEdit{
+    color:black;
+}

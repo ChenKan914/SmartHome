@@ -1,0 +1,7 @@
+/*2019.5.8,MainDlg*/
+
+/*QLabel*/
+QLabel{
+    color:#ffffff;
+}
+

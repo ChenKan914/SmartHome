@@ -1,0 +1,12 @@
+#ifndef SH_NETWORK_GLOBAL_H
+#define SH_NETWORK_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(SH_NETWORK_LIBRARY)
+#  define SH_NETWORKSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define SH_NETWORKSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // SH_NETWORK_GLOBAL_H

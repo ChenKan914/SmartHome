@@ -1,0 +1,91 @@
+/*2010.1.8,SecurityDlg*/
+
+/*QLabel*/
+QLabel#m_lbTitle{
+    color:#ffffff;
+}
+
+/*m_btnBack*/
+QPushButton#m_btnBack{
+        border-image: url(:/images/HouseCtlDlg/BackNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:hover{
+        border-image: url(:/images/HouseCtlDlg/BackCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:checked{
+        border-image: url(:/images/HouseCtlDlg/BackCursor.png);
+	border: 0px;
+}
+
+/*m_btnCamera*/
+QPushButton#m_btnCamera{
+	border-image: url(:/images/SecurityDlg/CameraNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnCamera:hover{
+	border-image: url(:/images/SecurityDlg/CameraCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnCamera:checked{
+	border-image: url(:/images/SecurityDlg/CameraCursor.png);
+	border: 0px;
+}
+
+/*m_btnWarning*/
+QPushButton#m_btnWarn{
+	border-image: url(:/images/SecurityDlg/WarnNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnWarn:hover{
+	border-image: url(:/images/SecurityDlg/WarnCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnWarn:checked{
+	border-image: url(:/images/SecurityDlg/WarnCursor.png);
+	border: 0px;
+}
+
+/*m_btnRoomEnv*/
+QPushButton#m_btnRoomEnv{
+        border-image: url(:/images/SecurityDlg/RoomEnvNormal.png);
+        border: 0px;
+}
+QPushButton#m_btnRoomEnv:hover{
+        border-image: url(:/images/SecurityDlg/RoomEnvCursor.png);
+        border: 0px;
+}
+QPushButton#m_btnRoomEnv:checked{
+        border-image: url(:/images/SecurityDlg/RoomEnvCursor.png);
+        border: 0px;
+}
+
+/*m_btnRoomEnv*/
+QPushButton#m_btnSetting{
+        border-image: url(:/images/SecurityDlg/SettingNormal.png);
+        border: 0px;
+}
+QPushButton#m_btnSetting:hover{
+        border-image: url(:/images/SecurityDlg/SettingCursor.png);
+        border: 0px;
+}
+QPushButton#m_btnSetting:checked{
+        border-image: url(:/images/SecurityDlg/SettingCursor.png);
+        border: 0px;
+}
+
+/*m_scrollAreaDevice*/
+QScrollArea#m_scrollAreaDevice{
+    background-color:rgba(255, 255, 255,10);
+}
+
+QWidget#m_scrollAreaWgDevice{
+    background-color:rgba(255,255,255,0);
+}
+
+/*m_listwgSort*/
+QListWidget#m_listwgRoom{
+        background-color:rgba(255, 255, 255,10);
+        color:white;
+}

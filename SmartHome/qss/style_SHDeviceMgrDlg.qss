@@ -1,0 +1,47 @@
+/*2019.5.7,DeviceMgrDlg*/
+
+/*m_btnBack*/
+QPushButton#m_btnBack{
+        border-image: url(:/images/DeviceMgrDlg/BackNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:hover{
+        border-image: url(:/images/DeviceMgrDlg/BackCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:checked{
+        border-image: url(:/images/DeviceMgrDlg/BackCursor.png);
+	border: 0px;
+}
+/*m_sortSelect*/
+QComboBox#m_cboxSort{
+        background-color:rgba(255, 255, 255,30);
+        border-color:white;
+        color:white;
+        border-width: 1px;
+        border-style: solid;
+        padding: 1px 0px 1px 3px;
+        selection-color:black;
+}
+QComboBox#m_cboxSort:hover{
+        background-color:rgba(0, 0, 0,20);
+        border-color:white;
+        color:white;
+        border-width: 1px;
+        border-style: solid;
+        padding: 1px 0px 1px 3px;
+        selection-color:black;
+}
+/*m_listWidget*/
+QListWidget#m_listwgSort{
+        background-color:rgba(255, 255, 255,20);
+        color:white;
+}
+/*m_scrollArea*/
+QScrollArea#m_scrollArea{
+    background-color:rgba(255, 255, 255,20);
+}
+
+QWidget#m_scrollAreaWidgetContents{
+    background-color:rgba(255,255,255,0);
+}

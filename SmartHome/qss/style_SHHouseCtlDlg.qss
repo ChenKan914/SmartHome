@@ -1,0 +1,41 @@
+/*2019.5.21,HouseCtlDlg*/
+
+/*QLabel*/
+QLabel{
+    color:#ffffff;
+}
+
+/*m_scrollAreaDevice*/
+QScrollArea#m_scrollAreaDevice{
+    background-color:rgba(255, 255, 255,10);
+}
+
+QWidget#m_scrollAreaWgDevice{
+    background-color:rgba(255,255,255,0);
+}
+
+/*m_btnBack*/
+QPushButton#m_btnBack{
+        border-image: url(:/images/HouseCtlDlg/BackNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:hover{
+        border-image: url(:/images/HouseCtlDlg/BackCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:checked{
+        border-image: url(:/images/HouseCtlDlg/BackCursor.png);
+	border: 0px;
+}
+
+/*m_listwgSort*/
+QListWidget#m_listwgRoom{
+        background-color:rgba(255, 255, 255,10);
+        color:white;
+}
+
+/*m_listwgDevice*/
+QListWidget#m_listwgDevice{
+        background-color:rgba(255, 255, 255,10);
+        color:white;
+}

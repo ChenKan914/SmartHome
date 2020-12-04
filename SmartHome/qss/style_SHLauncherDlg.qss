@@ -1,0 +1,113 @@
+/*2019.5.7,LauncherDlg*/
+
+/*m_btnHouse*/
+QPushButton#m_btnHouse{
+	border-image: url(:/images/LauncherDlg/HouseNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnHouse:hover{
+	border-image: url(:/images/LauncherDlg/HouseCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnHouse:checked{
+	border-image: url(:/images/LauncherDlg/HouseCursor.png);
+	border: 0px;
+}
+
+/*m_btnProperty*/
+QPushButton#m_btnProperty{
+	border-image: url(:/images/LauncherDlg/PropertyNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnProperty:hover{
+	border-image: url(:/images/LauncherDlg/PropertyCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnProperty:checked{
+	border-image: url(:/images/LauncherDlg/PropertyCursor.png);
+	border: 0px;
+}
+
+/*m_btnMode*/
+QPushButton#m_btnMode{
+	border-image: url(:/images/LauncherDlg/ModeNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnMode:hover{
+	border-image: url(:/images/LauncherDlg/ModeCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnMode:checked{
+	border-image: url(:/images/LauncherDlg/ModeCursor.png);
+	border: 0px;
+}
+
+/*m_btnEquipment*/
+QPushButton#m_btnDeviceMgr{
+	border-image: url(:/images/LauncherDlg/EquipmentNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnDeviceMgr:hover{
+	border-image: url(:/images/LauncherDlg/EquipmentCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnDeviceMgr:checked{
+	border-image: url(:/images/LauncherDlg/EquipmentCursor.png);
+	border: 0px;
+}
+
+/*m_btnSetting*/
+QPushButton#m_btnSetting{
+	border-image: url(:/images/LauncherDlg/SettingNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnSetting:hover{
+	border-image: url(:/images/LauncherDlg/SettingCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnSetting:checked{
+	border-image: url(:/images/LauncherDlg/SettingCursor.png);
+	border: 0px;
+}
+
+/*m_btnDoorCtl*/
+QPushButton#m_btnDoorCtl{
+	border-image: url(:/images/LauncherDlg/DoorCtlNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnDoorCtl:hover{
+	border-image: url(:/images/LauncherDlg/DoorCtlCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnDoorCtl:checked{
+	border-image: url(:/images/LauncherDlg/DoorCtlCursor.png);
+	border: 0px;
+}
+
+/*m_btnSafe*/
+QPushButton#m_btnSafe{
+	border-image: url(:/images/LauncherDlg/SafeNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnSafe:hover{
+	border-image: url(:/images/LauncherDlg/SafeCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnSafe:checked{
+	border-image: url(:/images/LauncherDlg/SafeCursor.png);
+	border: 0px;
+}
+
+/*m_btnNeighbor*/
+QPushButton#m_btnNeighbor{
+	border-image: url(:/images/LauncherDlg/NeighborNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnNeighbor:hover{
+	border-image: url(:/images/LauncherDlg/NeighborCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnNeighbor:checked{
+	border-image: url(:/images/LauncherDlg/NeighborCursor.png);
+	border: 0px;
+}

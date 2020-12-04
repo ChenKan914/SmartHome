@@ -1,0 +1,15 @@
+/*2019.5.7,DeviceMgrDlg*/
+
+/*m_btnBack*/
+QPushButton#m_btnBack{
+        border-image: url(:/images/DeviceMgrDlg/BackNormal.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:hover{
+        border-image: url(:/images/DeviceMgrDlg/BackCursor.png);
+	border: 0px;
+}
+QPushButton#m_btnBack:checked{
+        border-image: url(:/images/DeviceMgrDlg/BackCursor.png);
+	border: 0px;
+}

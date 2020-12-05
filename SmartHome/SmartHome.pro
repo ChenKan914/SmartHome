@@ -5,7 +5,9 @@ QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-DEP = dep_x86
+DEP = dep_arm
+isEqual(QMAKE_HOST.arch,x86_64){DEP = dep_x86}
+message($${DEP})
 SLNDIR = ..
 CODE = $${SLNDIR}/Code_sdk
 LIBDIR = $${SLNDIR}/bin_linux

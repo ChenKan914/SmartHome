@@ -3,7 +3,9 @@ QT       += widgets network
 TARGET = SH_Network
 TEMPLATE = lib
 
-DEP = dep_x86
+DEP = dep_arm
+isEqual(QMAKE_HOST.arch,x86_64){DEP = dep_x86}
+message($${DEP})
 SLNDIR = ../..
 CODE = $${SLNDIR}/Code_sdk
 INCLUDEDIR = $${CODE}/include/SH_Network

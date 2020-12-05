@@ -3,7 +3,9 @@ QT       += widgets
 TARGET = SH_DeviceListItem
 TEMPLATE = lib
 
-DEP = dep_x86
+DEP = dep_arm
+isEqual(QMAKE_HOST.arch,x86_64){DEP = dep_x86}
+message($${DEP})
 SLNDIR = ../..
 CODE = $${SLNDIR}/Code_sdk
 INCLUDEDIR = $${CODE}/include/SH_DeviceListItem

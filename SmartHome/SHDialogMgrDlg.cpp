@@ -21,7 +21,7 @@ void SHDialogMgrDlg::init()
     setAttribute(Qt::WA_TranslucentBackground);
 
     //添加背景，设置样式
-    m_pixmapBg.load(":/images/Background/bg2.jpg");
+    m_pixmapBg.load(":/images/Background/bg5.jpg");
     int iWidth = m_pixmapBg.width(); //获得以前图片的宽和高
     int iWeight = m_pixmapBg.height();
     m_pixmapBg = m_pixmapBg.scaled(iWidth/2,iWeight/2,Qt::KeepAspectRatio);

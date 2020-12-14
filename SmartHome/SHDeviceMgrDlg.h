@@ -9,7 +9,7 @@
 #include <QTime>
 #include <QFile>
 #include <QPainter>
-#include <SHControls.h>
+#include <SH_Controls.h>
 
 namespace Ui {
 class SHDeviceMgrDlg;

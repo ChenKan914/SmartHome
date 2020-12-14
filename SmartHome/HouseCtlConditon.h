@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QtDebug>
-#include <SHControls.h>
+#include <SH_Controls.h>
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QTimer>

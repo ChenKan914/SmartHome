@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 
     SHDialogMgrDlg w;
     pSHSerial = new SHSerialPort();
-    pSHSerial->show();
+    //pSHSerial->show();
     w.show();
 
     return a.exec();

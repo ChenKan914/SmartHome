@@ -34,8 +34,3 @@ HEADERS += \
         $${INCLUDEDIR}/SHTcpSocket.h \
         $${INCLUDEDIR}/sh_network_global.h \
         $${INCLUDEDIR}/message.pb.h
-
-#unix {
-#    target.path = /usr/lib
-#    INSTALLS += target
-#}

@@ -2,7 +2,7 @@
 #define SHPROPERTYDLG_H
 
 #include <QWidget>
-#include "SHControls.h"
+#include "SH_Controls.h"
 #include <QFile>
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QHostAddress>

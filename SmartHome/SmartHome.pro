@@ -21,6 +21,7 @@ CONFIG += c++11
 
 INCLUDEPATH +=  \
         $${INCLUDEDIR}/SH_Network \
+        $${INCLUDEDIR}/SH_Controls \
         $${INCLUDEDIR}/SH_Network/protobuf
 
 QMAKE_LFLAGS += \
@@ -33,12 +34,12 @@ LIBS += \
 
 LIBS += \
         -lSH_Network \
-        -lprotobuf
+        -lprotobuf \
+        -lSH_Controls
 
 SOURCES += \
         main.cpp \
         SHHomeDlg.cpp \
-        SHControls.cpp \
         SHLauncherDlg.cpp \
         SHDeviceMgrDlg.cpp \
         SHAddDeviceDlg.cpp \
@@ -50,12 +51,11 @@ SOURCES += \
         HouseCtlLamp.cpp \
         SHPropertyDlg.cpp \
         SHSecurityDlg.cpp \
-    SecurityHumiture.cpp \
-    SHNeighborDlg.cpp
+        SecurityHumiture.cpp \
+        SHNeighborDlg.cpp
 
 HEADERS += \
         SHHomeDlg.h \
-        SHControls.h \
         SHLauncherDlg.h \
         SHDeviceMgrDlg.h \
         SHAddDeviceDlg.h \
@@ -67,8 +67,8 @@ HEADERS += \
         HouseCtlLamp.h \
         SHPropertyDlg.h \
         SHSecurityDlg.h \
-    SecurityHumiture.h \
-    SHNeighborDlg.h
+        SecurityHumiture.h \
+        SHNeighborDlg.h
 
 FORMS += \
         SHHomeDlg.ui \
@@ -83,8 +83,8 @@ FORMS += \
         HouseCtlLamp.ui \
         SHPropertyDlg.ui \
         SHSecurityDlg.ui \
-    SecurityHumiture.ui \
-    SHNeighborDlg.ui
+        SecurityHumiture.ui \
+        SHNeighborDlg.ui
 
 RESOURCES += \
         images.qrc

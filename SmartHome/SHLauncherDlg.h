@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "QToolButton"
 #include "SHHomeDlg.h"
-#include <SHControls.h>
+#include <SH_Controls.h>
 
 namespace Ui {
 class SHLauncherDlg;

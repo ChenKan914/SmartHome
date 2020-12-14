@@ -3,131 +3,14 @@
 #include <SHAddDeviceDlg.h>
 #include <QMessageBox>
 #include <SHNetworkMessage.h>
-SHSerialPort::SHSerialPort(QWidget *parent) :
-    m_receiveProMsg(0),QWidget(parent),
-    ui(new Ui::SHSerialPort)
+SHSerialPort::SHSerialPort(QWidget *parent)
 {
-    ui->setupUi(this);
-    //查找串口
-    foreach ( const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
-    {
-        QSerialPort serial;
-        serial.setPort(info);
-        if(serial.open(QIODevice::ReadWrite))
-        {
-            ui->m_cboxPort->addItem(serial.portName());
-            serial.close();
-        }
-    }
-//    if(ui->m_cboxPort->currentText() == nullptr)
-//    {
-//        ui->m_btnOpen->setEnabled(false);
-//        ui->m_btnClr->setEnabled(false);
-//        ui->m_btnSendData->setEnabled(false);
-//    }
-//    else
-//    {
-//        ui->m_btnOpen->setEnabled(true);
-//        ui->m_btnClr->setEnabled(true);
-//        ui->m_btnSendData->setEnabled(true);
-//    }
-
-//    ui->m_cboxBaud->setCurrentIndex(7);
-//    ui->m_cboxBitNum->setCurrentIndex(3);
-
     connect(pQSerial,SIGNAL(readyRead()),this,SLOT(readData()));
-
-    m_timer = new QTimer(this);
-    connect(m_timer,SIGNAL(timeout()),this,SLOT(updateReceiveMsg()));
 }
 
 SHSerialPort::~SHSerialPort()
 {
-    delete ui;
 }
-
-void SHSerialPort::on_m_btnOpen_clicked()
-{
-    if(ui->m_btnOpen->text() == tr("打开串口"))
-    {
-        pQSerial = new QSerialPort;
-        pQSerial->setPortName(ui->m_cboxPort->currentText());
-        pQSerial->open(QIODevice::ReadWrite);
-
-        pQSerial->setBaudRate(ui->m_cboxBaud->currentText().toInt());
-        pQSerial->setDataBits(QSerialPort::Data8);
-        pQSerial->setStopBits(QSerialPort::OneStop);
-        pQSerial->setParity(QSerialPort::NoParity);
-        pQSerial->setFlowControl(QSerialPort::NoFlowControl);
-
-        ui->m_cboxPort->setEnabled(false);
-        ui->m_cboxBaud->setEnabled(false);
-        ui->m_cboxBitNum->setEnabled(false);
-        ui->m_cboxStop->setEnabled(false);
-        ui->m_cboxStop->setEnabled(false);
-        ui->m_cboxParity->setEnabled(false);
-
-        ui->m_btnOpen->setText("关闭串口");
-        ui->m_btnRefresh->setEnabled(false);
-
-        connect(pQSerial,SIGNAL(readyRead()),this,SLOT(readData()));
-    }
-    else
-    {
-        pQSerial->close();
-
-        ui->m_cboxPort->setEnabled(true);
-        ui->m_cboxBaud->setEnabled(true);
-        ui->m_cboxBitNum->setEnabled(true);
-        ui->m_cboxStop->setEnabled(true);
-        ui->m_cboxStop->setEnabled(true);
-        ui->m_cboxParity->setEnabled(true);
-
-        ui->m_btnOpen->setText("打开串口");
-        ui->m_btnRefresh->setEnabled(true);
-    }
-
-}
-
-void SHSerialPort::on_m_btnClr_clicked()
-{
-    ui->m_textRev->clear();
-}
-
-void SHSerialPort::on_m_btnSendData_clicked()
-{
-    pQSerial->write(ui->m_textSend->toPlainText().toLatin1());
-}
-
-void SHSerialPort::on_m_btnRefresh_clicked()
-{
-    ui->m_cboxPort->clear();
-    //查找串口
-    foreach (const QSerialPortInfo  &info, QSerialPortInfo::availablePorts())
-    {
-        QSerialPort serial;
-        serial.setPort(info);
-        if(serial.open(QIODevice::ReadWrite))
-        {
-            ui->m_cboxPort->addItem(serial.portName());
-            serial.close();
-        }
-    }
-
-    if(ui->m_cboxPort->currentText() == nullptr)
-    {
-        ui->m_btnOpen->setEnabled(false);
-        ui->m_btnClr->setEnabled(false);
-        ui->m_btnSendData->setEnabled(false);
-    }
-    else
-    {
-        ui->m_btnOpen->setEnabled(true);
-        ui->m_btnClr->setEnabled(true);
-        ui->m_btnSendData->setEnabled(true);
-    }
-}
-
 void SHSerialPort::readData()
 {
     QByteArray buf;
@@ -206,7 +89,7 @@ void SHSerialPort::eventAddrHandle(changeMsg msg)
             return ;
         }
     }
-    SHAddDeviceDlg *addDevice = new SHAddDeviceDlg(this,msg.shortAddr,msg.extAddr);
+    SHAddDeviceDlg *addDevice = new SHAddDeviceDlg(nullptr,msg.shortAddr,msg.extAddr);
     addDevice->show();
 }
 
@@ -217,11 +100,4 @@ void SHSerialPort::eventDHT11Msg(changeMsg msg)
     emit messageHumiture(temp,hum);
     qDebug()<<"temp is :"<<temp;
     qDebug()<<"hun is :"<<hum;
-}
-
-void SHSerialPort::updateReceiveMsg()
-{
-    qDebug()<<"updateReceiveMsg";
-    m_receiveProMsg = 0;
-    m_timer->stop();
 }

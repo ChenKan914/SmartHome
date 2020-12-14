@@ -2,7 +2,7 @@
 #include "ui_SHLauncherDlg.h"
 #include <QPainter>
 #include <QFile>
-#include <SHControls.h>
+#include <SH_Controls.h>
 
 SHLauncherDlg::SHLauncherDlg(QWidget *parent) :
     QWidget(parent),

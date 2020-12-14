@@ -1,0 +1,12 @@
+#ifndef SH_CONTROLS_GLOBAL_H
+#define SH_CONTROLS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(SH_CONTROLS_LIBRARY)
+#  define SH_CONTROLSSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define SH_CONTROLSSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // SH_CONTROLS_GLOBAL_H

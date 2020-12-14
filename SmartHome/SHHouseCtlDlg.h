@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
-#include <SHControls.h>
+#include <SH_Controls.h>
 #include <HouseCtlLamp.h>
 #include <HouseCtlConditon.h>
 #include <HouseCtlCurtain.h>

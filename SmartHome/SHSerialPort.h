@@ -9,7 +9,7 @@
 #include <QSqlQuery>
 #include <QtDebug>
 #include <QBuffer>
-#include <SH_Controls.h>
+#include <SHControls.h>
 #include "HouseCtlConditon.h"
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QHostAddress>

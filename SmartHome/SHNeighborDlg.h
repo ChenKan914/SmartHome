@@ -2,7 +2,7 @@
 #define SHNEIGHBORDLG_H
 
 #include <QWidget>
-#include "SH_Controls.h"
+#include "SHControls.h"
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QHostAddress>
 #include <SHNetworkMessage.h>

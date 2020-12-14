@@ -1,4 +1,4 @@
-#include "SH_Controls.h"
+#include "SHControls.h"
 
 SHToolButton::SHToolButton(QWidget *parent):
     QToolButton (parent)

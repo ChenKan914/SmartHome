@@ -21,11 +21,11 @@ INCLUDEPATH += \
         $${INCLUDEDIR} \
 
 SOURCES += \
-        $${SRCDIR}/SH_Controls.cpp
+        $${SRCDIR}/SHControls.cpp
 
 HEADERS += \
         $${INCLUDEDIR}/sh_controls_global.h \
-        $${INCLUDEDIR}/SH_Controls.h
+        $${INCLUDEDIR}/SHControls.h
 
 RESOURCES += \
     images.qrc

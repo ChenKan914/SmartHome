@@ -3,9 +3,20 @@
 #include <SHAddDeviceDlg.h>
 #include <QMessageBox>
 #include <SHNetworkMessage.h>
-SHSerialPort::SHSerialPort(QWidget *parent)
+
+SHSerialPort* SHSerialPort::instance = nullptr;
+SHSerialPort* SHSerialPort::getInstance()
 {
-    connect(pQSerial,SIGNAL(readyRead()),this,SLOT(readData()));
+    if(instance == nullptr)
+    {
+        instance = new SHSerialPort();
+    }
+    return instance;
+}
+
+SHSerialPort::SHSerialPort()
+{
+    connect(this,SIGNAL(readyRead()),this,SLOT(readData()));
 }
 
 SHSerialPort::~SHSerialPort()
@@ -14,7 +25,7 @@ SHSerialPort::~SHSerialPort()
 void SHSerialPort::readData()
 {
     QByteArray buf;
-    buf = pQSerial->readAll();
+    buf = this->readAll();
     qDebug()<<"echo buf";
     qDebug()<<buf;
 

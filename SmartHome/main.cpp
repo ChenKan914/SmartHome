@@ -9,8 +9,6 @@
 #include "SHNetworkMessage.h"
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QHostAddress>
-QSerialPort *pQSerial;
-SHSerialPort *pSHSerial;
 void initSql()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
@@ -85,7 +83,7 @@ void initSql()
 
 void initSerialPort()
 {
-    pQSerial = new QSerialPort;
+    SHSerialPort *pQSerial = SHSerialPort::getInstance();
     pQSerial->setPortName("ttyUSB0");
 
     if(pQSerial->open(QIODevice::ReadWrite))
@@ -111,7 +109,7 @@ int main(int argc, char *argv[])
     initSerialPort();
 
     SHDialogMgrDlg w;
-    pSHSerial = new SHSerialPort();
+    //pSHSerial = new SHSerialPort();
     //pSHSerial->show();
     w.show();
 

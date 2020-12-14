@@ -10,8 +10,6 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <QTimer>
 
-extern QSerialPort *pQSerial;
-
 namespace Ui {
 class HouseCtlConditon;
 }

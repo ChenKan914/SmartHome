@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "SHSerialPort.h"
-extern SHSerialPort *pSHSerial;
 namespace Ui {
 class SecurityHumiture;
 }

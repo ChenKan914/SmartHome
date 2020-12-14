@@ -8,7 +8,7 @@ SecurityHumiture::SecurityHumiture(QWidget *parent) :
     ui->setupUi(this);
     init();
 
-    connect(pSHSerial,SIGNAL(messageHumiture(QString,QString)),this,SLOT(updateHumitureData(QString,QString)));
+    connect(SHSerialPort::getInstance(),SIGNAL(messageHumiture(QString,QString)),this,SLOT(updateHumitureData(QString,QString)));
 }
 
 SecurityHumiture::~SecurityHumiture()

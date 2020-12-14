@@ -21,17 +21,17 @@ class SHSerialPort;
 class SHSerialPort : public QSerialPort
 {
     Q_OBJECT
-
-public:
-    explicit SHSerialPort(QWidget *parent = nullptr);
+private:
+    SHSerialPort();
     ~SHSerialPort();
-
-
+    static SHSerialPort *instance;
+public:
     void serialDataHandle(QByteArray  serial_buf);
     void msgProcessEvent(changeMsg msg);
     void eventAddrHandle(changeMsg msg);
     void eventDHT11Msg(changeMsg msg);
 
+    static SHSerialPort* getInstance();
 
 private slots:
     void readData();

@@ -1351,5 +1351,5 @@ void HouseCtlConditon::sendUartMsg(QString commandFront,QString commandRear)
 
     uartData.append(msg.tailer);
 
-    pQSerial->write(uartData);
+    SHSerialPort::getInstance()->write(uartData);
 }

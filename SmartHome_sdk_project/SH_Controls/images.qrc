@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
+    <qresource prefix="/">
+        <file>images/DeviceMgrDlg/FireAlarm.png</file>
         <file>images/DeviceMgrDlg/Condition.png</file>
         <file>images/DeviceMgrDlg/Curtain.png</file>
         <file>images/DeviceMgrDlg/Hygrothermograph.png</file>

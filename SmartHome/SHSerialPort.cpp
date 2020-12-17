@@ -79,6 +79,9 @@ void SHSerialPort::msgProcessEvent(changeMsg msg)
         eventDHT11Msg(msg);
         emit sendSerialMessage();
         break;
+    case SMARTHOME_FIREALARM:
+        eventFireAlarmMsg(msg);
+        break;
     default:
         break;
     }
@@ -111,4 +114,9 @@ void SHSerialPort::eventDHT11Msg(changeMsg msg)
     emit messageHumiture(temp,hum);
     qDebug()<<"temp is :"<<temp;
     qDebug()<<"hun is :"<<hum;
+}
+
+void SHSerialPort::eventFireAlarmMsg(changeMsg msg)
+{
+    emit messageFireAlarm();
 }

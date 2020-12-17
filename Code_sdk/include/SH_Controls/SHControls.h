@@ -6,6 +6,7 @@
 #include <QStringList>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QtDebug>
 class SHToolButton : public QToolButton
 {
     Q_OBJECT
@@ -81,7 +82,8 @@ typedef enum
 {
     SMARTHOME_MACADDRMSG = 0,
     SMARTHOME_TEMPHUMIMSG = 1,
-    SMARTHOME_AIRCONDITIONMSG = 2
+    SMARTHOME_AIRCONDITIONMSG = 2,
+    SMARTHOME_FIREALARM = 3
 } msgType_t;
 
 

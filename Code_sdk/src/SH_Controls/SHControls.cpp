@@ -8,6 +8,7 @@ SHToolButton::SHToolButton(QWidget *parent):
 
 void SHToolButton::setIconDeviceMgrDlg(QString Type)
 {
+    qDebug()<<"222:"<<Type;
     if(Type == "电灯")
     {
         this->setIcon(QIcon(QPixmap(":/images/DeviceMgrDlg/Lamp.png")));
@@ -24,11 +25,14 @@ void SHToolButton::setIconDeviceMgrDlg(QString Type)
     {
         this->setIcon(QIcon(QPixmap(":/images/DeviceMgrDlg/Television.png")));
     }
+    else if(Type == "火焰传感器")
+    {
+        this->setIcon(QIcon(QPixmap(":/images/DeviceMgrDlg/FireAlarm.png")));
+    }
     else if(Type == "温湿度计")
     {
         this->setIcon(QIcon(QPixmap(":/images/DeviceMgrDlg/Hygrothermograph.png")));
     }
-
 }
 
 SHListWidgetItem::SHListWidgetItem(QListWidget *view,int Tpye):

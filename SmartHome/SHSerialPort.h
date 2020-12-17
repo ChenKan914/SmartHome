@@ -30,6 +30,7 @@ public:
     void msgProcessEvent(changeMsg msg);
     void eventAddrHandle(changeMsg msg);
     void eventDHT11Msg(changeMsg msg);
+    void eventFireAlarmMsg(changeMsg msg);
 
     static SHSerialPort* getInstance();
 
@@ -39,5 +40,6 @@ private slots:
 signals:
     void sendSerialMessage();
     void messageHumiture(QString temp,QString humi);
+    void messageFireAlarm();
 };
 #endif // SHSERIALPORT_H

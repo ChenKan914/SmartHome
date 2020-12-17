@@ -99,8 +99,17 @@ void SHSecurityDlg::updateScrollAreaDeviceCtl()
 
         if(Type == "温湿度计")
         {
-            SecurityHumiture *pHumiture = new SecurityHumiture(ui->m_scrollAreaWgDevice);
-            pHumiture->setGeometry(5,5,735,80);
+            SecurityHumiture *pHumiture = new SecurityHumiture(ui->m_scrollAreaWgDevice,Type);
+            pHumiture->setGeometry(5,5 + index_y*100,735,80);
+            pHumiture->show();
+            pHumiture->setDeviceName(Name);
+            index_y++;
+            ui->m_scrollAreaWgDevice->setGeometry(0,0,ui->m_scrollAreaDevice->width()-20,5+90*index_y);
+        }
+        else if(Type == "火焰传感器")
+        {
+            SecurityHumiture *pHumiture = new SecurityHumiture(ui->m_scrollAreaWgDevice,Type);
+            pHumiture->setGeometry(5,5+ index_y*100,735,80);
             pHumiture->show();
             pHumiture->setDeviceName(Name);
             index_y++;

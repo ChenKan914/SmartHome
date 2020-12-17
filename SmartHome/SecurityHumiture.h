@@ -4,6 +4,10 @@
 #include <QWidget>
 #include "SHSerialPort.h"
 #include <QMessageBox>
+#include <QtNetwork/QTcpSocket>
+#include <QtNetwork/QHostAddress>
+#include <SHNetworkMessage.h>
+#include <SHTcpSocket.h>
 namespace Ui {
 class SecurityHumiture;
 }
@@ -25,6 +29,7 @@ private slots:
 
 private:
     Ui::SecurityHumiture *ui;
+    SHTcpSocket *tcpClient;
 };
 
 #endif // SECURITYHUMITURE_H

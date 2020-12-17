@@ -8,8 +8,9 @@ SecurityHumiture::SecurityHumiture(QWidget *parent,QString type) :
     ui->setupUi(this);
     init(type);
 
+    tcpClient = new SHTcpSocket(this);
     connect(SHSerialPort::getInstance(),SIGNAL(messageHumiture(QString,QString)),this,SLOT(updateHumitureData(QString,QString)));
-    connect(SHSerialPort::getInstance(),SIGNAL(messageFireAlarm()),this,SLOT(updateHumitureData()));
+    connect(SHSerialPort::getInstance(),SIGNAL(messageFireAlarm()),this,SLOT(updateFireAlarm()));
 }
 
 SecurityHumiture::~SecurityHumiture()
@@ -56,9 +57,26 @@ void SecurityHumiture::updateHumitureData(QString temp,QString humi)
 
 void SecurityHumiture::updateFireAlarm()
 {
-    QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "你确定要删除吗？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "火灾报警", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     if(rb == QMessageBox::Yes)
     {
+        if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
+            tcpClient->connectToHost("192.168.1.11",5000);
+
+        if(tcpClient->waitForConnected(1000))
+        {
+            SHNetworkMessage *info = new SHNetworkMessage;
+            info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
+            info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_FIRE);
+            info->mergeMessage();
+
+            QByteArray data;
+            info->serializeToString(data);
+            tcpClient->write(data);
+        }
+        else
+        {
+        }
     }
     else
     {

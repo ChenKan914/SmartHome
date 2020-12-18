@@ -25,6 +25,8 @@ private:
     SHSerialPort();
     ~SHSerialPort();
     static SHSerialPort *instance;
+
+    bool delayfireAlarmDlg = false;
 public:
     void serialDataHandle(QByteArray  serial_buf);
     void msgProcessEvent(changeMsg msg);
@@ -35,12 +37,15 @@ public:
     static SHSerialPort* getInstance();
 
     bool static fireAlarmDlgExist;
+    QTimer *m_timer;
 private slots:
     void readData();
+    void delayFireAlarmDlgRepeat();
 
 signals:
     void sendSerialMessage();
     void messageHumiture(QString temp,QString humi);
     void messageFireAlarm();
+
 };
 #endif // SHSERIALPORT_H

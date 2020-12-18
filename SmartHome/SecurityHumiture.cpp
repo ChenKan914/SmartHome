@@ -57,11 +57,10 @@ void SecurityHumiture::updateHumitureData(QString temp,QString humi)
 
 void SecurityHumiture::updateFireAlarm()
 {
-    SHSerialPort::fireAlarmDlgExist = true;
     QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "火灾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     if(rb == QMessageBox::Yes)
     {
-        SHSerialPort::fireAlarmDlgExist = false;
+        SHSerialPort::getInstance()->m_timer->start(10000);
         if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
             tcpClient->connectToHost("192.168.1.11",5000);
 
@@ -78,10 +77,10 @@ void SecurityHumiture::updateFireAlarm()
         }
         else
         {
+            SHSerialPort::getInstance()->m_timer->start(10000);
         }
     }
     else
     {
-        SHSerialPort::fireAlarmDlgExist = false;
     }
 }

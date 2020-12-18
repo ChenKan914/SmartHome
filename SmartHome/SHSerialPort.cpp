@@ -17,7 +17,9 @@ SHSerialPort* SHSerialPort::getInstance()
 
 SHSerialPort::SHSerialPort()
 {
+    m_timer = new QTimer();
     connect(this,SIGNAL(readyRead()),this,SLOT(readData()));
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(delayFireAlarmDlgRepeat()));
 }
 
 SHSerialPort::~SHSerialPort()
@@ -119,8 +121,15 @@ void SHSerialPort::eventDHT11Msg(changeMsg msg)
 
 void SHSerialPort::eventFireAlarmMsg(changeMsg msg)
 {
-    if(fireAlarmDlgExist == false)
+    if(delayfireAlarmDlg == false)
     {
         emit messageFireAlarm();
+        delayfireAlarmDlg = true;
     }
+}
+
+void SHSerialPort::delayFireAlarmDlgRepeat()
+{
+    m_timer->stop();
+    delayfireAlarmDlg = false;
 }

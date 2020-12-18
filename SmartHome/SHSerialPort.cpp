@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <SHNetworkMessage.h>
 
+bool SHSerialPort::fireAlarmDlgExist = false;
 SHSerialPort* SHSerialPort::instance = nullptr;
 SHSerialPort* SHSerialPort::getInstance()
 {
@@ -118,5 +119,8 @@ void SHSerialPort::eventDHT11Msg(changeMsg msg)
 
 void SHSerialPort::eventFireAlarmMsg(changeMsg msg)
 {
-    emit messageFireAlarm();
+    if(fireAlarmDlgExist == false)
+    {
+        emit messageFireAlarm();
+    }
 }

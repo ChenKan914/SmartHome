@@ -34,6 +34,7 @@ public:
 
     static SHSerialPort* getInstance();
 
+    bool static fireAlarmDlgExist;
 private slots:
     void readData();
 

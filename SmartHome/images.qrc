@@ -84,8 +84,9 @@
         <file>images/NeighborDlg/Back.png</file>
         <file>images/NeighborDlg/BackCursor.png</file>
         <file>images/NeighborDlg/BackNormal.png</file>
-        <file>images/SecurityDlg/Smoke.png</file>
         <file>images/SecurityDlg/FireAlarm.png</file>
         <file>images/DeviceMgrDlg/FireAlarm.png</file>
+        <file>images/SecurityDlg/SmokeAlarm.png</file>
+        <file>images/DeviceMgrDlg/SmokeAlarm.png</file>
     </qresource>
 </RCC>

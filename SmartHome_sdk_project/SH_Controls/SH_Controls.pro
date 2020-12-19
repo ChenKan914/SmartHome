@@ -27,5 +27,3 @@ HEADERS += \
         $${INCLUDEDIR}/sh_controls_global.h \
         $${INCLUDEDIR}/SHControls.h
 
-RESOURCES += \
-    images.qrc

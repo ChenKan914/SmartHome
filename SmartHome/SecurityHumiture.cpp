@@ -43,6 +43,12 @@ void SecurityHumiture::init(QString type)
         ui->m_lb1->setText("正常");
         ui->m_btnIcon->setStyleSheet("border-image: url(:/images/SecurityDlg/FireAlarm.png)");
     }
+    else if(type == "烟雾传感器")
+    {
+        ui->m_lb1->show();
+        ui->m_lb1->setText("正常");
+        ui->m_btnIcon->setStyleSheet("border-image: url(:/images/SecurityDlg/SmokeAlarm.png)");
+    }
 }
 
 void SecurityHumiture::setDeviceName(QString name)

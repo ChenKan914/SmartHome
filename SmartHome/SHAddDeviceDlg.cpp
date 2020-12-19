@@ -24,7 +24,7 @@ SHAddDeviceDlg::~SHAddDeviceDlg()
 void SHAddDeviceDlg::init(QString Addr,QString Name,QString Type,QString Locate)
 {
     QStringList DeviceSortList,DeviceRoomList;
-    DeviceSortList<<"电灯"<<"空调"<<"窗帘"<<"电视"<<"温湿度计"<<"火焰传感器";
+    DeviceSortList<<"电灯"<<"空调"<<"窗帘"<<"电视"<<"温湿度计"<<"火焰传感器"<<"烟雾传感器";
     DeviceRoomList<<"客厅"<<"卧室1"<<"卧室2"<<"阳台"<<"卫生间";
     ui->m_DeviceSort->addItems(DeviceSortList);
     ui->m_DeviceLocate->addItems(DeviceRoomList);

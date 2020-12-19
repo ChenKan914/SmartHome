@@ -86,6 +86,8 @@ void SHSecurityDlg::updateListWidgetRoom()
 
 void SHSecurityDlg::updateScrollAreaDeviceCtl()
 {
+    QList<SecurityHumiture*> lists = ui->m_scrollAreaDevice->findChildren<SecurityHumiture*>();
+    foreach (SecurityHumiture* list, lists) {   delete list;  }
     QSqlQuery query;
     query.exec("select * from devicemgr where Location = '"+m_szListWidgetRoomText+"'");
 

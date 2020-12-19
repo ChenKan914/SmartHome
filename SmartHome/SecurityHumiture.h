@@ -26,6 +26,7 @@ public:
 private slots:
     void updateHumitureData(QString temp,QString humi);
     void updateFireAlarm();
+    void updateSmokeAlarm();
 
 private:
     Ui::SecurityHumiture *ui;

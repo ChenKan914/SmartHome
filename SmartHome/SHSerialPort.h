@@ -26,26 +26,29 @@ private:
     ~SHSerialPort();
     static SHSerialPort *instance;
 
-    bool delayfireAlarmDlg = false;
 public:
     void serialDataHandle(QByteArray  serial_buf);
     void msgProcessEvent(changeMsg msg);
     void eventAddrHandle(changeMsg msg);
     void eventDHT11Msg(changeMsg msg);
     void eventFireAlarmMsg(changeMsg msg);
+    void eventSmokeAlarmMsg(changeMsg msg);
 
     static SHSerialPort* getInstance();
 
     bool static fireAlarmDlgExist;
-    QTimer *m_timer;
+    bool static smokeAlarmDlgExist;
+    QTimer *m_timerFireAlarmDlg;
+    QTimer *m_timerSmokeAlarmDlg;
 private slots:
     void readData();
     void delayFireAlarmDlgRepeat();
+    void delaySmokeAlarmDlgRepeat();
 
 signals:
     void sendSerialMessage();
     void messageHumiture(QString temp,QString humi);
     void messageFireAlarm();
-
+    void messageSmokeAlarm();
 };
 #endif // SHSERIALPORT_H

@@ -11,6 +11,7 @@ SecurityHumiture::SecurityHumiture(QWidget *parent,QString type) :
     tcpClient = new SHTcpSocket(this);
     connect(SHSerialPort::getInstance(),SIGNAL(messageHumiture(QString,QString)),this,SLOT(updateHumitureData(QString,QString)));
     connect(SHSerialPort::getInstance(),SIGNAL(messageFireAlarm()),this,SLOT(updateFireAlarm()));
+    connect(SHSerialPort::getInstance(),SIGNAL(messageSmokeAlarm()),this,SLOT(updateSmokeAlarm()));
 }
 
 SecurityHumiture::~SecurityHumiture()
@@ -57,27 +58,72 @@ void SecurityHumiture::updateHumitureData(QString temp,QString humi)
 
 void SecurityHumiture::updateFireAlarm()
 {
-    QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "火灾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-    if(rb == QMessageBox::Yes)
+    if(SHSerialPort::getInstance()->fireAlarmDlgExist == false)
     {
-        SHSerialPort::getInstance()->m_timer->start(10000);
-        if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
-            tcpClient->connectToHost("192.168.1.11",5000);
 
-        if(tcpClient->waitForConnected(1000))
+        SHSerialPort::getInstance()->fireAlarmDlgExist = true;
+        QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "火灾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        if(rb == QMessageBox::Yes)
         {
-            SHNetworkMessage *info = new SHNetworkMessage;
-            info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
-            info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_FIRE);
-            info->mergeMessage();
+            SHSerialPort::getInstance()->m_timerFireAlarmDlg->start(10000);
+            if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
+                tcpClient->connectToHost("192.168.1.11",5000);
 
-            QByteArray data;
-            info->serializeToString(data);
-            tcpClient->write(data);
+            if(tcpClient->waitForConnected(1000))
+            {
+                SHNetworkMessage *info = new SHNetworkMessage;
+                info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
+                info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_FIRE);
+                info->mergeMessage();
+
+                QByteArray data;
+                info->serializeToString(data);
+                tcpClient->write(data);
+            }
+            else
+            {
+                SHSerialPort::getInstance()->m_timerFireAlarmDlg->start(10000);
+            }
         }
         else
         {
-            SHSerialPort::getInstance()->m_timer->start(10000);
+        }
+    }
+    else
+    {
+    }
+}
+
+void SecurityHumiture::updateSmokeAlarm()
+{
+    if(SHSerialPort::getInstance()->smokeAlarmDlgExist == false)
+    {
+        SHSerialPort::getInstance()->smokeAlarmDlgExist = true;
+        QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "烟雾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        if(rb == QMessageBox::Yes)
+        {
+            SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
+            if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
+                tcpClient->connectToHost("192.168.1.11",5000);
+
+            if(tcpClient->waitForConnected(1000))
+            {
+                SHNetworkMessage *info = new SHNetworkMessage;
+                info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
+                info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_SMOG);
+                info->mergeMessage();
+
+                QByteArray data;
+                info->serializeToString(data);
+                tcpClient->write(data);
+            }
+            else
+            {
+                SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
+            }
+        }
+        else
+        {
         }
     }
     else

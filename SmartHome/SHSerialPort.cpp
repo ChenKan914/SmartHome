@@ -5,6 +5,7 @@
 #include <SHNetworkMessage.h>
 
 bool SHSerialPort::fireAlarmDlgExist = false;
+bool SHSerialPort::smokeAlarmDlgExist = false;
 SHSerialPort* SHSerialPort::instance = nullptr;
 SHSerialPort* SHSerialPort::getInstance()
 {
@@ -17,9 +18,11 @@ SHSerialPort* SHSerialPort::getInstance()
 
 SHSerialPort::SHSerialPort()
 {
-    m_timer = new QTimer();
+    m_timerFireAlarmDlg = new QTimer();
+    m_timerSmokeAlarmDlg = new QTimer();
     connect(this,SIGNAL(readyRead()),this,SLOT(readData()));
-    connect(m_timer,SIGNAL(timeout()),this,SLOT(delayFireAlarmDlgRepeat()));
+    connect(m_timerFireAlarmDlg,SIGNAL(timeout()),this,SLOT(delayFireAlarmDlgRepeat()));
+    connect(m_timerSmokeAlarmDlg,SIGNAL(timeout()),this,SLOT(delaySmokeAlarmDlgRepeat()));
 }
 
 SHSerialPort::~SHSerialPort()
@@ -85,6 +88,9 @@ void SHSerialPort::msgProcessEvent(changeMsg msg)
     case SMARTHOME_FIREALARM:
         eventFireAlarmMsg(msg);
         break;
+    case SMARTHOME_SMOKEALARM:
+        eventSmokeAlarmMsg(msg);
+        break;
     default:
         break;
     }
@@ -121,15 +127,27 @@ void SHSerialPort::eventDHT11Msg(changeMsg msg)
 
 void SHSerialPort::eventFireAlarmMsg(changeMsg msg)
 {
-    if(delayfireAlarmDlg == false)
+    if(fireAlarmDlgExist == false)
     {
         emit messageFireAlarm();
-        delayfireAlarmDlg = true;
+    }
+}
+void SHSerialPort::eventSmokeAlarmMsg(changeMsg msg)
+{
+    if(smokeAlarmDlgExist == false)
+    {
+        emit messageSmokeAlarm();
     }
 }
 
 void SHSerialPort::delayFireAlarmDlgRepeat()
 {
-    m_timer->stop();
-    delayfireAlarmDlg = false;
+    m_timerFireAlarmDlg->stop();
+    fireAlarmDlgExist = false;
+}
+
+void SHSerialPort::delaySmokeAlarmDlgRepeat()
+{
+    m_timerSmokeAlarmDlg->stop();
+    smokeAlarmDlgExist = false;
 }

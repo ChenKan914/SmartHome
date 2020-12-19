@@ -1,0 +1,46 @@
+syntax = "proto2";
+
+message MessageBase{
+    required MessageHeader header = 1;
+    optional MessageBody body = 2;
+}
+
+message MessageHeader{
+
+	enum MessageType{
+		LOGIN_REQ = 0;		//握手请求消息
+		LOGIN_RESP = 1;		//握手应答消息
+		SERVICE_REQ = 2;	//业务请求消息
+		SERVICE_RESP = 3;	//业务应答消息
+		IPINFO_REQ = 4;		//IP请求消息
+		IPINFO_IPRESP = 5; 	//IP应答消息
+		ALARMINFO_REQ = 6;	//报警请求消息
+		ALARMINFO_RESP = 7;	//报警应答消息
+		HEARTBEAT_REQ = 8;	//心跳请求消息
+		HEARTBEAT_RESP = 9;	//心跳应答消息
+	}
+		
+	required MessageType type = 1 [default = SERVICE_REQ];
+}
+
+message MessageBody{
+	enum MessageAlarmType{
+		ALARM_NONE = 0;
+		ALARM_KEY = 1;		//一键警报
+		ALARM_FIRE = 2;		//火灾警报
+		ALARM_INVADE = 3;	//入侵警报
+		ALARM_SMOG = 4;		//烟雾报警
+	}
+	optional MessageAlarmType alarm = 1 [default = ALARM_KEY];
+	optional MessageRoomInfo roomInfo = 2; 
+	optional string data = 3;
+}
+
+message MessageRoomInfo{
+	optional string community = 1;
+	required int32 building_id = 2;
+	optional string  building_part = 3;
+	required int32 cell_id = 4;
+	required int32 room_id = 5;
+	optional string attachment = 6;
+}

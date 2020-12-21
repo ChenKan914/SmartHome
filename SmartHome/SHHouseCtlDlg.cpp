@@ -85,9 +85,9 @@ void SHHouseCtlDlg::updateListWidgetDevice()
     SHStringList m_listDeviceSort;
     while (query.next())
     {
-        if(query.value(0).toString() !="温湿度计")
+        if(query.value(0).toString() !="温湿度计" && query.value(0).toString() !="火焰传感器" && query.value(0).toString() !="烟雾传感器")
         {
-                    m_listDeviceSort<<query.value(0).toString();
+            m_listDeviceSort<<query.value(0).toString();
         }
     }
     m_listDeviceSort.removeRepeatItem();

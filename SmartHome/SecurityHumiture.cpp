@@ -35,6 +35,7 @@ void SecurityHumiture::init(QString type)
         ui->m_lb2Text->show();
         ui->m_lb1->setText("温度:");
         ui->m_lb2->setText("湿度:");
+        ui->m_ckbWarning->hide();
         ui->m_btnIcon->setStyleSheet("border-image: url(:/images/SecurityDlg/Humiture.png)");
     }
     else if(type == "火焰传感器")
@@ -66,33 +67,40 @@ void SecurityHumiture::updateFireAlarm()
 {
     if(SHSerialPort::getInstance()->fireAlarmDlgExist == false)
     {
-
-        SHSerialPort::getInstance()->fireAlarmDlgExist = true;
-        QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "火灾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-        if(rb == QMessageBox::Yes)
+        if(alarmToCommunity == false)
         {
-            SHSerialPort::getInstance()->m_timerFireAlarmDlg->start(10000);
-            if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
-                tcpClient->connectToHost("192.168.1.11",5000);
-
-            if(tcpClient->waitForConnected(1000))
-            {
-                SHNetworkMessage *info = new SHNetworkMessage;
-                info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
-                info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_FIRE);
-                info->mergeMessage();
-
-                QByteArray data;
-                info->serializeToString(data);
-                tcpClient->write(data);
-            }
-            else
-            {
-                SHSerialPort::getInstance()->m_timerFireAlarmDlg->start(10000);
-            }
+            QMessageBox::warning(this, "", "火灾报警");
+            SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
         }
         else
         {
+            SHSerialPort::getInstance()->fireAlarmDlgExist = true;
+            QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "火灾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+            if(rb == QMessageBox::Yes)
+            {
+                SHSerialPort::getInstance()->m_timerFireAlarmDlg->start(10000);
+                if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
+                    tcpClient->connectToHost("192.168.1.11",5000);
+
+                if(tcpClient->waitForConnected(1000))
+                {
+                    SHNetworkMessage *info = new SHNetworkMessage;
+                    info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
+                    info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_FIRE);
+                    info->mergeMessage();
+
+                    QByteArray data;
+                    info->serializeToString(data);
+                    tcpClient->write(data);
+                }
+                else
+                {
+                    SHSerialPort::getInstance()->m_timerFireAlarmDlg->start(10000);
+                }
+            }
+            else
+            {
+            }
         }
     }
     else

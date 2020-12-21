@@ -4,8 +4,8 @@
 #include <QMessageBox>
 
 SHSecurityDlg::SHSecurityDlg(QWidget *parent) :
-    QWidget(parent),m_markFunction(0),
-    ui(new Ui::SHSecurityDlg)
+    QWidget(parent),ui(new Ui::SHSecurityDlg),
+    m_markFunction(0)
 {
     ui->setupUi(this);
     setNomalStyle();
@@ -36,6 +36,7 @@ void SHSecurityDlg::init()
 {
     ui->m_wgtLaunch->show();
     ui->m_wgtRoomEnv->hide();
+    ui->m_wgtsetting->hide();
 }
 
 void SHSecurityDlg::on_m_btnBack_clicked()
@@ -49,6 +50,7 @@ void SHSecurityDlg::on_m_btnBack_clicked()
         m_markFunction = 0;
         ui->m_wgtLaunch->show();
         ui->m_wgtRoomEnv->hide();
+        ui->m_wgtsetting->hide();
     }
 }
 
@@ -56,9 +58,18 @@ void SHSecurityDlg::on_m_btnRoomEnv_clicked()
 {
     m_markFunction = 1;
     ui->m_wgtLaunch->hide();
+    ui->m_wgtsetting->hide();
     ui->m_wgtRoomEnv->show();
     updateListWidgetRoom();
 
+}
+
+void SHSecurityDlg::on_m_btnSetting_clicked()
+{
+    m_markFunction = 4;
+    ui->m_wgtLaunch->hide();
+    ui->m_wgtsetting->show();
+    ui->m_wgtRoomEnv->hide();
 }
 
 void SHSecurityDlg::updateListWidgetRoom()

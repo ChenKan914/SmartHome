@@ -187,6 +187,21 @@
     </widget>
    </widget>
   </widget>
+  <widget class="QWidget" name="m_wgtsetting" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>941</width>
+     <height>505</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>m_wgtRoomEnv</zorder>
+  <zorder>m_btnBack</zorder>
+  <zorder>m_lbTitle</zorder>
+  <zorder>m_wgtLaunch</zorder>
+  <zorder>m_wgtsetting</zorder>
  </widget>
  <resources/>
  <connections/>

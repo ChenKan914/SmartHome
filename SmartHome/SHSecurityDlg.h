@@ -37,6 +37,8 @@ private slots:
     void on_m_btnWarn_clicked();
     //void readData();
 
+    void on_m_btnSetting_clicked();
+
 signals:
     void backToLaunchDlg(int dialog);
 private:

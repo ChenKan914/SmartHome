@@ -3,7 +3,7 @@
 #include <QDebug>
 SecurityHumiture::SecurityHumiture(QWidget *parent,QString type) :
     QWidget(parent),
-    ui(new Ui::SecurityHumiture)
+    ui(new Ui::SecurityHumiture),alarmToCommunity(false)
 {
     ui->setupUi(this);
     init(type);
@@ -105,34 +105,48 @@ void SecurityHumiture::updateSmokeAlarm()
     if(SHSerialPort::getInstance()->smokeAlarmDlgExist == false)
     {
         SHSerialPort::getInstance()->smokeAlarmDlgExist = true;
-        QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "烟雾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-        if(rb == QMessageBox::Yes)
+        if(alarmToCommunity == false)
         {
+            QMessageBox::warning(this, "", "烟雾报警");
             SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
-            if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
-                tcpClient->connectToHost("192.168.1.11",5000);
-
-            if(tcpClient->waitForConnected(1000))
-            {
-                SHNetworkMessage *info = new SHNetworkMessage;
-                info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
-                info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_SMOG);
-                info->mergeMessage();
-
-                QByteArray data;
-                info->serializeToString(data);
-                tcpClient->write(data);
-            }
-            else
-            {
-                SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
-            }
         }
         else
         {
+            QMessageBox::StandardButton rb = QMessageBox::warning(this, "", "烟雾报警\n是否发送到社区服务中心？", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+            if(rb == QMessageBox::Yes)
+            {
+                SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
+                if(tcpClient->state() != QAbstractSocket::SocketState::ConnectedState)
+                    tcpClient->connectToHost("192.168.1.11",5000);
+
+                if(tcpClient->waitForConnected(1000))
+                {
+                    SHNetworkMessage *info = new SHNetworkMessage;
+                    info->setMessageType(MessageHeader_MessageType_ALARMINFO_REQ);
+                    info->setMessageAlarmType(MessageBody_MessageAlarmType_ALARM_SMOG);
+                    info->mergeMessage();
+
+                    QByteArray data;
+                    info->serializeToString(data);
+                    tcpClient->write(data);
+                }
+                else
+                {
+                    SHSerialPort::getInstance()->m_timerSmokeAlarmDlg->start(10000);
+                }
+            }
+            else
+            {
+            }
         }
     }
     else
     {
     }
+}
+
+void SecurityHumiture::on_m_ckbWarning_stateChanged(int arg1)
+{
+    if(arg1 == 2) alarmToCommunity = true;
+    else alarmToCommunity = false;
 }

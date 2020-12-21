@@ -28,9 +28,13 @@ private slots:
     void updateFireAlarm();
     void updateSmokeAlarm();
 
+    void on_m_ckbWarning_stateChanged(int arg1);
+
 private:
     Ui::SecurityHumiture *ui;
     SHTcpSocket *tcpClient;
+
+    bool alarmToCommunity;
 };
 
 #endif // SECURITYHUMITURE_H

@@ -6,6 +6,11 @@
 #include <QtNetwork/QTcpSocket>
 #include <QtNetwork/QHostAddress>
 #include <SHNetworkMessage.h>
+#include <QMessageBox>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QTime>
+#include <QTableWidgetItem>
 namespace Ui {
 class SHNeighborDlg;
 }
@@ -18,6 +23,7 @@ public:
     explicit SHNeighborDlg(QWidget *parent = nullptr);
     ~SHNeighborDlg();
     void setNomalStyle();
+    void updateTableWidget();
 
 private slots:
     void on_m_btnBack_clicked();
@@ -29,9 +35,13 @@ private slots:
     void readData();
     void on_m_btDial_clicked();
 
+    void on_m_tbwgHistory_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous);
+
 private:
     Ui::SHNeighborDlg *ui;
     QTcpSocket *tcpClient;
+
+    int insertTableFromSelect;
 
 signals:
     void backToLaunchDlg(int dialog);

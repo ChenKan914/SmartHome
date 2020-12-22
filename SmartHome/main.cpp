@@ -29,6 +29,15 @@ void initSql()
     }
 
     QSqlQuery query(db);
+    query.exec("create table dialHistory("
+                            "BuildingPart   char(16),"
+                            "BuildingID     char(16),"
+                            "CellID         char(16),"
+                            "RoomID         char(16),"
+                            "Name           char(16),"
+                            "Time           char(16),"
+                            "IP             char(16) )");
+
     query.exec("create table devicemgr("
                             "MacAddr char(16) primary key,"
                             "ShortAddr char(4),"

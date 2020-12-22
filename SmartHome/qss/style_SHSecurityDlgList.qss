@@ -1,0 +1,7 @@
+/*QLabel*/
+QLabel{
+    color:#ffffff;
+}
+QCheckBox{
+    color:#ffffff;
+}

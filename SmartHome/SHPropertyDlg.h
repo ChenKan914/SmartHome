@@ -30,6 +30,8 @@ signals:
 private:
     Ui::SHPropertyDlg *ui;
     SHTcpSocket *tcpClient;
+
+    bool m_bconnected;
 };
 
 #endif // SHPROPERTYDLG_H

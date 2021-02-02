@@ -88,5 +88,13 @@
         <file>images/DeviceMgrDlg/FireAlarm.png</file>
         <file>images/SecurityDlg/SmokeAlarm.png</file>
         <file>images/DeviceMgrDlg/SmokeAlarm.png</file>
+        <file>images/PropertyDlg/ConnectCursor.png</file>
+        <file>images/PropertyDlg/ConnectNormal.png</file>
+        <file>images/PropertyDlg/DialCursor.png</file>
+        <file>images/PropertyDlg/DialNormal.png</file>
+        <file>images/PropertyDlg/MessageCursor.png</file>
+        <file>images/PropertyDlg/MessageNormal.png</file>
+        <file>images/PropertyDlg/NoticeCursor.png</file>
+        <file>images/PropertyDlg/NoticeNormal.png</file>
     </qresource>
 </RCC>

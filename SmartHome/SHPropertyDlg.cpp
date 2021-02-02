@@ -3,12 +3,16 @@
 #include <QMessageBox>
 #include <SHNetworkMessage.h>
 SHPropertyDlg::SHPropertyDlg(QWidget *parent) :
-    QWidget(parent),
+    QWidget(parent),m_bconnected(false),
     ui(new Ui::SHPropertyDlg)
 {
     ui->setupUi(this);
     setNomalStyle();
     tcpClient = new SHTcpSocket(this);
+
+    ui->m_btnNotice->setDisabled(true);
+    ui->m_btnMessage->setDisabled(true);
+    ui->m_btnDial->setDisabled(true);
 }
 
 SHPropertyDlg::~SHPropertyDlg()
@@ -19,7 +23,7 @@ SHPropertyDlg::~SHPropertyDlg()
 
 void SHPropertyDlg::setNomalStyle()
 {
-    QFile styleSheet(":/qss/style_SHHouseCtlDlg.qss");
+    QFile styleSheet(":/qss/style_SHPropertyDlg.qss");
     if (!styleSheet.open(QIODevice::ReadOnly))
     {
         qWarning("Can't open the style sheet file.");
@@ -37,13 +41,11 @@ void SHPropertyDlg::on_m_btnBack_clicked()
 
 void SHPropertyDlg::on_m_btnConnect_clicked()
 {
-    if(ui->m_btnConnect->text() == tr("连接"))
+    if(m_bconnected == false)
     {
-        tcpClient->connectToHost(ui->m_EditIP->text(),ui->m_EditPort->text().toShort());
+        tcpClient->connectToHost("192.168.179.128",5000);
         if(tcpClient->waitForConnected(1000))
         {
-            ui->m_btnConnect->setText("断开");
-
             SHNetworkMessage *info = new SHNetworkMessage;
             info->setMessageType(MessageHeader_MessageType_LOGIN_REQ);
             info->mergeMessage();
@@ -51,6 +53,10 @@ void SHPropertyDlg::on_m_btnConnect_clicked()
             QByteArray data;
             info->serializeToString(data);
             tcpClient->write(data);
+            m_bconnected = true;
+            ui->m_btnNotice->setDisabled(false);
+            ui->m_btnMessage->setDisabled(false);
+            ui->m_btnDial->setDisabled(false);
         }
     }
     else
@@ -58,7 +64,12 @@ void SHPropertyDlg::on_m_btnConnect_clicked()
         tcpClient->disconnectFromHost();
         if(tcpClient->waitForDisconnected(1000) || tcpClient->state() == QAbstractSocket::UnconnectedState)
         {
-            ui->m_btnConnect->setText("连接");
+            m_bconnected = false;
+            ui->m_btnNotice->setDisabled(true);
+            ui->m_btnMessage->setDisabled(true);
+            ui->m_btnDial->setDisabled(true);
         }
     }
+
+
 }

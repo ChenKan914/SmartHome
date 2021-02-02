@@ -1,5 +1,8 @@
 /*2019.5.7,DeviceMgrDlg*/
-
+/*QLabel*/
+QLabel{
+    color:#ffffff;
+}
 /*m_btnBack*/
 QPushButton#m_btnBack{
         border-image: url(:/images/DeviceMgrDlg/BackNormal.png);
@@ -12,4 +15,60 @@ QPushButton#m_btnBack:hover{
 QPushButton#m_btnBack:checked{
         border-image: url(:/images/DeviceMgrDlg/BackCursor.png);
 	border: 0px;
+}
+
+/*m_btnConnect*/
+QPushButton#m_btnConnect{
+        border-image: url(:/images/PropertyDlg/ConnectNormal.png);
+        border: 0px;
+}
+QPushButton#m_btnConnect:hover{
+        border-image: url(:/images/PropertyDlg/ConnectCursor.png);
+        border: 0px;
+}
+QPushButton#m_btnConnect:checked{
+        border-image: url(:/images/PropertyDlg/ConnectCursor.png);
+        border: 0px;
+}
+
+/*m_btnNotice*/
+QPushButton#m_btnNotice{
+        border-image: url(:/images/PropertyDlg/NoticeNormal.png);
+        border: 0px;
+}
+QPushButton#m_btnNotice:hover{
+        border-image: url(:/images/PropertyDlg/NoticeCursor.png);
+        border: 0px;
+}
+QPushButton#m_btnNotice:checked{
+        border-image: url(:/images/PropertyDlg/NoticeCursor.png);
+        border: 0px;
+}
+
+/*m_btnMessage*/
+QPushButton#m_btnMessage{
+        border-image: url(:/images/PropertyDlg/MessageNormal.png);
+        border: 0px;
+}
+QPushButton#m_btnMessage:hover{
+        border-image: url(:/images/PropertyDlg/MessageCursor.png);
+        border: 0px;
+}
+QPushButton#m_btnMessage:checked{
+        border-image: url(:/images/PropertyDlg/MessageCursor.png);
+        border: 0px;
+}
+/*m_btnDial*/
+QPushButton#m_btnDial{
+        border-image: url(:/images/PropertyDlg/DialNormal.png);
+        border: 0px;
+}
+QPushButton#m_btnDial:hover{
+        border-image: url(:/images/PropertyDlg/DialCursor.png);
+        border: 0px;
+}
+
+QPushButton#m_btnDial:checked{
+        border-image: url(:/images/PropertyDlg/DialCursor.png);
+        border: 0px;
 }
